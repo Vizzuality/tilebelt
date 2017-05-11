@@ -67,8 +67,12 @@ function tile2lat(y, z) {
  * var tile = pointToTile(1, 1, 20)
  * //=tile
  */
-function pointToTile(lon, lat, z) {
+function pointToTile(lon, lat, z, precision) {
     var tile = pointToTileFraction(lon, lat, z);
+    if (precision) {
+      tile.push(tile[0] - Math.floor(tile[0]));
+      tile.push(tile[1] - Math.floor(tile[1]));
+    }
     tile[0] = Math.floor(tile[0]);
     tile[1] = Math.floor(tile[1]);
     return tile;
